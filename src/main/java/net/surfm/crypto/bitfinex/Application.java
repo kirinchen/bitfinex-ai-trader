@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableScheduling
 @ComponentScan(basePackages = { "net.surfm" })
 @SpringBootApplication
-@PropertySource({ "classpath:prod.properties", "classpath:${env}.properties" })
+@PropertySource({ "classpath:temp.properties", "classpath:${env}.properties" })
 public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);

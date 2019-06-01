@@ -55,7 +55,9 @@ dependencies {
     compile(
     	"org.springframework.boot:spring-boot-starter-web",
     	"org.apache.httpcomponents:httpclient:4.5.8",
-    	"javax.inject:javax.inject:1"
+    	"javax.inject:javax.inject:1",
+    	"org.json:json:20180813",
+    	"org.apache.commons:commons-text:1.6"
     ) 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }

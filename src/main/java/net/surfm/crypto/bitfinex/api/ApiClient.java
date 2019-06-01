@@ -30,8 +30,10 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+@Scope("prototype")
 @Service
 public class ApiClient {
 
@@ -39,9 +41,15 @@ public class ApiClient {
 	private String seckey;
 	@Value("${pubkey}")
 	private String pubkey;
-	@Inject
+	
 	private HttpClient client;
 
+	ApiClient init(HttpClient hc) {
+		client = hc;
+		
+		return this;
+	}
+	
 	// <editor-fold defaultstate="collapsed" desc="Utils">
 	/**
 	 * Get message signature.
