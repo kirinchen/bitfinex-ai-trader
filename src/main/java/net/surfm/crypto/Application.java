@@ -1,4 +1,4 @@
-package net.surfm.crypto.bitfinex;
+package net.surfm.crypto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -23,10 +23,12 @@ public class Application {
 	}
 	
 	
-	@Bean("Bitfinex")
+	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		RestTemplate ans= builder.build();
 		return ans;
 	}	
+	
+	
 
 }

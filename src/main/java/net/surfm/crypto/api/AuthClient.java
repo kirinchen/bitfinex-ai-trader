@@ -1,4 +1,4 @@
-package net.surfm.crypto.bitfinex.api;
+package net.surfm.crypto.api;
 
 import java.io.IOException;
 import java.net.URI;
@@ -35,7 +35,7 @@ import org.springframework.stereotype.Service;
 
 @Scope("prototype")
 @Service
-public class ApiClient {
+public class AuthClient {
 
 	@Value("${seckey}")
 	private String seckey;
@@ -44,7 +44,7 @@ public class ApiClient {
 	
 	private HttpClient client;
 
-	ApiClient init(HttpClient hc) {
+	AuthClient init(HttpClient hc) {
 		client = hc;
 		
 		return this;

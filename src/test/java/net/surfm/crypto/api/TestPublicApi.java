@@ -1,4 +1,4 @@
-package net.surfm.crypto.bitfinex.api;
+package net.surfm.crypto.api;
 
 import javax.inject.Inject;
 
@@ -9,17 +9,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestApiClient {
+public class TestPublicApi {
 
 	@Inject
-	private ApiCall apiCall;
+	private PublicApi api;
 
 	@Test
 	public void testOne() {
-		apiCall.run(c -> {
-			System.out.println(c.Wallets());
-			System.out.println(c.getClient().post("/v2/auth/r/orders"));
-		});
+		long now = System.currentTimeMillis();
+		long late = now - 1000000;
+		
+		System.out.println(api.listTrades("BTCUSD", late, now));
+
 	}
 
 }

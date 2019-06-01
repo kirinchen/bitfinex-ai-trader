@@ -1,4 +1,4 @@
-package net.surfm.crypto.bitfinex.api.dto;
+package net.surfm.crypto.api.dto;
 
 import java.io.IOException;
 
