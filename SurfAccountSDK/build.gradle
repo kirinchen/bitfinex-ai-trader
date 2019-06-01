@@ -1,6 +1,0 @@
-bootJar {
-  mainClassName = 'net.surfm.account.APIConfig'
-}
-
-
-jar.enabled=true
