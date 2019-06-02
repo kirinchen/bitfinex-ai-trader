@@ -1,12 +1,22 @@
-package net.surfm.crypto.api.dto;
+package net.surfm.crypto.bitfinex.model;
 
-public class TradeDto {
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@SuppressWarnings("serial")
+@Entity
+public class TradeRow implements Serializable {
 
 	private int id;
 	private long timestamp;
+	private Date doneAt;
 	private float amount;
 	private float price;
 
+	@Id
 	public int getId() {
 		return id;
 	}
@@ -39,9 +49,12 @@ public class TradeDto {
 		this.price = price;
 	}
 
-	@Override
-	public String toString() {
-		return "TradeDto [id=" + id + ", timestamp=" + timestamp + ", amount=" + amount + ", price=" + price + "]";
+	public Date getDoneAt() {
+		return doneAt;
+	}
+
+	public void setDoneAt(Date doneAt) {
+		this.doneAt = doneAt;
 	}
 
 }

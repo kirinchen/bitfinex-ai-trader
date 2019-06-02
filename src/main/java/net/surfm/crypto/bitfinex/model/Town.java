@@ -1,4 +1,4 @@
-package net.surfm.crypto.model;
+package net.surfm.crypto.bitfinex.model;
 
 import java.io.Serializable;
 import javax.persistence.*;

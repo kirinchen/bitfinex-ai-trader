@@ -1,4 +1,4 @@
-package net.surfm.crypto.api;
+package net.surfm.crypto.bitfinex.api;
 
 import java.io.IOException;
 import java.net.URI;

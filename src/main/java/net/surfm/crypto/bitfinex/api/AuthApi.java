@@ -1,12 +1,12 @@
-package net.surfm.crypto.api;
+package net.surfm.crypto.bitfinex.api;
 
 import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import net.surfm.crypto.api.dto.SortMapper;
-import net.surfm.crypto.api.dto.WalletDto;
+import net.surfm.crypto.bitfinex.api.dto.SortMapper;
+import net.surfm.crypto.bitfinex.api.dto.WalletDto;
 
 @Scope("prototype")
 @Service

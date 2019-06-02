@@ -1,4 +1,4 @@
-package net.surfm.crypto.api.dto;
+package net.surfm.crypto.bitfinex.api.dto;
 
 import java.util.ArrayList;
 import java.util.List;
