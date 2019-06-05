@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import net.surfm.crypto.bitfinex.api.dto.Currency;
@@ -25,8 +27,12 @@ public class TradeAvg implements Serializable {
 	private float buyAmount;
 	private float sellPrice;
 	private float buyPrice;
+	private float price;
+	private float absAmount;
 
 	@Id
+	@Column(nullable = false, columnDefinition = "int(12) unsigned")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}
@@ -103,4 +109,20 @@ public class TradeAvg implements Serializable {
 		this.buyPrice = buyPrice;
 	}
 
+	public float getAbsAmount() {
+		return absAmount;
+	}
+
+	public void setAbsAmount(float absAmount) {
+		this.absAmount = absAmount;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	
 }

@@ -18,6 +18,7 @@ import net.surfm.crypto.bitfinex.api.dto.Currency;
 import net.surfm.crypto.bitfinex.api.dto.TradeDto;
 import net.surfm.crypto.bitfinex.dao.TradeAvgDao;
 import net.surfm.crypto.bitfinex.dao.TradeRowDao;
+import net.surfm.crypto.bitfinex.model.TradeAvg;
 import net.surfm.crypto.bitfinex.model.TradeRow;
 import net.surfm.infrastructure.CommUtils;
 
@@ -56,7 +57,34 @@ public class TradeRowCron {
 		}).collect(Collectors.toList());
 		dao.saveAll(entityList);
 		
-		CommUtils.pl("record done");
+		recordAvg(in,entityList);
+		
+		CommUtils.pl("done record "+in);
+	}
+
+	private void recordAvg(Currency in,List<TradeRow> entityList) {
+		TradeAvg avg  = new TradeAvg();
+		float sellSumPrice=0 , buySumPrice=0 , absAmount = 0;
+		for(TradeRow tr : entityList) {
+			if(tr.getAmount() > 0 ) { //BUY 
+				avg.setBuyAmount(avg.getBuyAmount()+tr.getAmount());
+				buySumPrice += tr.getAmount() * tr.getPrice();
+			}else{ //SELL
+				avg.setSellAmount(avg.getSellAmount()+tr.getAmount());
+				sellSumPrice+= tr.getAmount() * tr.getPrice();
+			}
+			absAmount +=  Math.abs( tr.getAmount());
+		}
+		avg.setAbsAmount(absAmount);
+		avg.setBuyPrice(buySumPrice / avg.getBuyAmount());
+		avg.setInCurrency(in);
+		avg.setOutCurrency(Currency.USD);
+		avg.setPrice((buySumPrice+sellSumPrice) /absAmount );
+		avg.setRecordAt(new Date());
+		avg.setSellPrice(sellSumPrice  / avg.getSellAmount());
+		avg.setTimestamp(System.currentTimeMillis());
+		avgDao.save(avg);
+		
 	}
 
 }
