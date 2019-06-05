@@ -58,6 +58,7 @@ dependencies {
     	"org.springframework.boot:spring-boot-starter-web",
     	"org.apache.httpcomponents:httpclient:4.5.8",
     	"javax.inject:javax.inject:1",
+    	"net.sf.dozer:dozer:5.5.1",
     	"org.json:json:20180813",
     	"org.apache.commons:commons-text:1.6",
     	"com.github.jnidzwetzki:bitfinex-v2-wss-api:0.7.3"

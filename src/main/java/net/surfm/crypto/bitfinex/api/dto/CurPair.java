@@ -1,5 +1,7 @@
 package net.surfm.crypto.bitfinex.api.dto;
 
+import com.github.jnidzwetzki.bitfinex.v2.entity.currency.BitfinexCurrencyPair;
+
 public class CurPair {
 
 	private Currency in;
@@ -28,6 +30,14 @@ public class CurPair {
 
 	public void setOut(Currency out) {
 		this.out = out;
+	}
+	
+	public void register(double minimalOrderSize) {
+		BitfinexCurrencyPair.register(in.toString(),out.toString(), 0.001);
+	}
+	
+	public BitfinexCurrencyPair genCurrencyPair() {
+		return BitfinexCurrencyPair.of(in.toString(), out.toString());
 	}
 
 	@Override
