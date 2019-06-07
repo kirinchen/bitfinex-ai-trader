@@ -23,7 +23,7 @@ import net.surfm.crypto.bitfinex.api.dto.Currency;
 public class TradeChannel implements ApplicationListener<ApplicationReadyEvent> , BiConsumer<BitfinexOrderBookSymbol, BitfinexOrderBookEntry> {
 
 	private final static Logger LOG = Logger.getLogger(TradeChannel.class.getName());
-	
+	private long nextShotAt = System.currentTimeMillis();
 
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
@@ -46,7 +46,10 @@ public class TradeChannel implements ApplicationListener<ApplicationReadyEvent> 
 
 	@Override
 	public void accept(BitfinexOrderBookSymbol orderbookConfig, BitfinexOrderBookEntry entry) {
-		System.out.format("Got entry (%s) for orderbook (%s)\n", entry, orderbookConfig);
+		if(System.currentTimeMillis() > nextShotAt) {
+			nextShotAt = System.currentTimeMillis() + (1000*60*1);
+			System.out.format("Got entry (%s) for orderbook (%s)\n", entry, orderbookConfig);
+		}
 	}
 
 }
